@@ -1,0 +1,15 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ClopeTracker{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+  </head>
+  <body>
+    <h1>{% block header %}Bienvenue sur ClopeTracker 🚬{% endblock %}</h1>
+
+    {% block content %}{% endblock %}
+  </body>
+</html>
