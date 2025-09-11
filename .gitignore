@@ -1,0 +1,30 @@
+# Environnements virtuels
+ENV/
+venv/
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+*.pyd
+
+# Fichiers de logs
+*.log
+
+# Fichiers SQLite (base locale)
+db.sqlite3
+
+# Config Django secrets
+*.secret
+*.env
+
+# Fichiers statiques compilés
+/staticfiles/
+media/
+
+# VSCode
+.vscode/
+.history/
+
+# Mac / Windows
+.DS_Store
+Thumbs.db
