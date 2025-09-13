@@ -1,4 +1,138 @@
-/* ===== Import des variables ===== */
-/* ===== Couleurs ===== */
-/* ===== Polices ===== */
-/* ===== Breakpoints ===== */
+/* out: ./style.css */
+/* out: false, main: ../style.less */
+/* out: false, main: ../style.less */
+/* out: false, main: ../style.less */
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+a {
+  color: inherit;
+}
+/* out: false, main: ../style.less */
+body {
+  background: #f7f9fc;
+  color: #0f172a;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  line-height: 1.5;
+}
+.container {
+  width: 100%;
+  max-width: 1000px;
+  margin-inline: auto;
+  padding: 24px 16px;
+}
+h1,
+h2,
+h3 {
+  margin: 0 0 16px 0;
+  letter-spacing: 0.2px;
+}
+button,
+.btn {
+  border-radius: 14px;
+  padding: 10px 24px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #0f172a;
+  cursor: pointer;
+}
+button:hover,
+.btn:hover {
+  border-color: #5b7cfa;
+  box-shadow: 0 0 0 3px rgba(91, 124, 250, 0.15);
+}
+/* out: false, main: ../style.less */
+.navbar {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  max-width: 1000px;
+  margin-inline: auto;
+  padding: 24px 16px;
+}
+.navbar .logo {
+  text-decoration: none;
+  color: inherit;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+.navbar .navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.navbar .nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.navbar .nav li a {
+  text-decoration: none;
+  color: inherit;
+  padding: 10px 16px;
+  border: 1px solid transparent;
+  border-radius: 14px;
+}
+.navbar .nav li a:hover {
+  border-color: #e5e7eb;
+  background: rgba(91, 124, 250, 0.1);
+}
+/* petite amélioration du markup existant sans toucher aux templates */
+.navbar {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* out: false, main: ../style.less */
+.messages {
+  margin: 0 0 16px 0;
+  display: grid;
+  gap: 10px;
+}
+.message {
+  border-radius: 14px;
+  padding: 10px 16px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+}
+.message.success {
+  border-color: rgba(22, 163, 74, 0.35);
+  background: rgba(22, 163, 74, 0.1);
+}
+.message.warning {
+  border-color: rgba(245, 158, 11, 0.35);
+  background: rgba(245, 158, 11, 0.1);
+}
+.message.error {
+  border-color: rgba(239, 68, 68, 0.35);
+  background: rgba(239, 68, 68, 0.1);
+}
+.message.info {
+  border-color: rgba(14, 165, 233, 0.35);
+  background: rgba(14, 165, 233, 0.1);
+}
+/* out: false, main: ../style.less */
+.footer {
+  border-top: 1px solid #e5e7eb;
+  margin-top: 36px;
+  padding: 24px 16px;
+  color: #64748b;
+  text-align: center;
+}

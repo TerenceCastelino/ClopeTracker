@@ -1,0 +1,25 @@
+{% load static %}
+<nav class="navbar">
+  <a href="{% url 'home' %}" class="logo">ClopeTracker</a>
+
+  <ul class="nav">
+    <li><a href="{% url 'home' %}">Accueil</a></li>
+
+    {% if user.is_authenticated %}
+      <!-- Liens visibles seulement quand connecté -->
+      <li><span>Bonjour, {{ user.username }}</span></li>
+      <li><a href="{% url 'accounts:password_change' %}">Changer mon mot de passe</a></li>
+      <li>
+        <form method="post" action="{% url 'accounts:logout' %}" style="display:inline">
+          {% csrf_token %}
+          <button type="submit" class="btn-link">Se déconnecter</button>
+        </form>
+      </li>
+    {% else %}
+      <!-- Liens visibles seulement quand déconnecté -->
+      <li><a href="{% url 'accounts:signup' %}">Créer un compte</a></li>
+      <li><a href="{% url 'accounts:login' %}?next={% url 'home' %}">Se connecter</a></li>
+      <li><a href="{% url 'accounts:password_reset' %}">Mot de passe perdu ?</a></li>
+    {% endif %}
+  </ul>
+</nav>

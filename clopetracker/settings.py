@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Apps maison
-    'accounts',
+    'accounts.apps.AccountsConfig', 
     'tracker',
 ]
 
@@ -80,9 +80,8 @@ TEMPLATES = [
     },
 ]
 
-# ========= WSGI / ASGI =========
+# ========= WSGI =========
 WSGI_APPLICATION = 'clopetracker.wsgi.application'
-# (Si tu passes à ASGI/Channels plus tard : ajoute ASGI_APPLICATION)
 
 # ========= Base de données =========
 # Par défaut : SQLite (fichier db.sqlite3).
@@ -97,10 +96,10 @@ DATABASES = {
 
 # ========= Validation des mots de passe =========
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',},
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
 # ========= Internationalisation =========
@@ -111,8 +110,6 @@ USE_I18N = True
 USE_TZ = True  # Stockage en UTC en base, conversion au fuseau local côté app
 
 # ========= Fichiers statiques & médias =========
-# En dev : mets tes assets dans BASE_DIR/static (STATICFILES_DIRS)
-# En prod : collectstatic regroupe tout dans STATIC_ROOT (servi par Whitenoise)
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / "static"]  # dossiers sources (dev)
 STATIC_ROOT = BASE_DIR / config("STATIC_ROOT", default="staticfiles")  # cible collectstatic (prod)
@@ -127,19 +124,39 @@ STORAGES = {
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / config("MEDIA_ROOT", default="media")
 
-# ========= Email =========
-# En dev : console backend (affiche les emails dans le terminal)
-EMAIL_BACKEND = config("EMAIL_BACKEND", default="django.core.mail.backends.console.EmailBackend")
-# Paramètres SMTP (utiles si tu passes à un vrai SMTP plus tard)
+# ========= Email (via Gmail SMTP) =========
+# ⚠️ Nécessite un mot de passe d’application généré dans Google.
+# Toutes les valeurs sont dans ton fichier .env.
+
+EMAIL_BACKEND = config(
+    "EMAIL_BACKEND",
+    default="django.core.mail.backends.console.EmailBackend"
+)  
+# Par défaut : console backend → affiche les emails dans le terminal (utile en dev)
+
 EMAIL_HOST = config("EMAIL_HOST", default="")
+# Serveur SMTP (ici Gmail = smtp.gmail.com)
+
 EMAIL_PORT = config("EMAIL_PORT", cast=int, default=0)
+# Port du serveur SMTP (587 avec TLS)
+
 EMAIL_USE_TLS = config("EMAIL_USE_TLS", cast=bool, default=False)
+# True → active TLS (recommandé pour Gmail, port 587)
+
 EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="")
+# Ton adresse Gmail (expéditeur)
+
 EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD", default="")
+# Ton mot de passe d’application Gmail (16 caractères générés)
 
-# ========= Modèle utilisateur =========
-# IMPORTANT : ne décommente qu'après avoir créé ton modèle custom (accounts.User)
-# AUTH_USER_MODEL = 'accounts.User'
+DEFAULT_FROM_EMAIL = config("DEFAULT_FROM_EMAIL", default=EMAIL_HOST_USER)
+# Adresse utilisée par défaut comme expéditeur dans les emails
 
-# ========= Clé primaire par défaut =========
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# ========= Utilisateur =========
+# IMPORTANT : tu utilises ton modèle custom accounts.User
+AUTH_USER_MODEL = "accounts.User"
+
+# ========= Redirections login/logout =========
+LOGIN_REDIRECT_URL = "home"   # après connexion
+LOGOUT_REDIRECT_URL = "home"  # après déconnexion
+LOGIN_URL = "accounts:login"  # URL de connexion

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Créer un compte — ClopeTracker{% endblock %}
+{% block header %}Créer un compte{% endblock %}
+
+{% block content %}
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {{ form.as_p }}
+    <button type="submit">Valider</button>
+  </form>
+{% endblock %}

@@ -1,0 +1,46 @@
+/* out: false, main: ../style.less */
+
+// static/style/components/navbar.less
+.navbar {
+  background:@color-surface;
+  border-bottom:1px solid @color-border;
+  position:sticky; top:0; z-index:10;
+
+  .container(); // si tu veux toute la navbar contenue (option)
+//   padding:@space-3 @space-3; // décommente si tu ne veux pas la .container()
+
+  .logo {
+    .link-reset();
+    font-weight:700;
+    letter-spacing:.3px;
+  }
+
+  .navbar-inner {
+    .flex-center();
+    justify-content:space-between;
+    gap:@space-3;
+  }
+
+  .nav {
+    list-style:none; margin:0; padding:0;
+    .flex-center(); gap:@space-2;
+
+    li a {
+      .link-reset();
+      padding:@space-2 @space-3;
+      border:1px solid transparent;
+      .rounded();
+
+      &:hover {
+        border-color:@color-border;
+        background:fade(@color-primary, 10%);
+      }
+    }
+  }
+}
+
+/* petite amélioration du markup existant sans toucher aux templates */
+.navbar {
+  padding:@space-3;
+  display:flex; align-items:center; justify-content:space-between;
+}

@@ -4,12 +4,35 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}ClopeTracker{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'style/style.css' %}">
-  </head>
-  <body>
-    <h1>{% block header %}Bienvenue sur ClopeTracker 🚬{% endblock %}</h1>
 
-    {% block content %}{% endblock %}
+    <title>{% block title %}ClopeTracker{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'style/style.css' %}">
+    {# Hook pour ajouter du CSS/JS spécifique à une page #}
+    {% block head_extra %}{% endblock %}
+  </head>
+
+  <body class="{% block body_class %}{% endblock %}">
+    {# Navbar globale (surcharge possible) #}
+    {% block navbar %}
+      {% include "layout/_navbar.html" %}
+    {% endblock %}
+
+    <main class="container">
+      {# Messages flash (success, error, info) #}
+      {% include "layout/_messages.html" %}
+
+      <h1>{% block header %}Bienvenue sur ClopeTracker 🚬{% endblock %}</h1>
+
+      {% block content %}{% endblock %}
+    </main>
+
+    {# Footer global (surcharge possible) #}
+    {% block footer %}
+      {% include "layout/_footer.html" %}
+    {% endblock %}
+
+    {# Hook pour scripts de page (ex: chart JS) #}
+    {% block scripts %}{% endblock %}
   </body>
 </html>

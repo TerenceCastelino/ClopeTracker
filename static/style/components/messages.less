@@ -1,0 +1,15 @@
+/* out: false, main: ../style.less */
+
+// static/style/components/messages.less
+.messages { margin:0 0 @space-3 0; display:grid; gap:@space-2; }
+.message {
+  .rounded();
+  padding:@space-2 @space-3;
+  border:1px solid @color-border;
+  background:@color-surface;
+}
+
+.message.success { border-color:fade(@color-success,35%); background:fade(@color-success,10%); }
+.message.warning { border-color:fade(@color-warning,35%); background:fade(@color-warning,10%); }
+.message.error   { border-color:fade(@color-danger,35%);  background:fade(@color-danger,10%); }
+.message.info    { border-color:fade(@color-info,35%);    background:fade(@color-info,10%); }
